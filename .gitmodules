@@ -1,0 +1,3 @@
+[submodule "festival"]
+	path = festival
+	url = https://github.com/generic-library/festival
