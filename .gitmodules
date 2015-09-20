@@ -1,3 +1,6 @@
 [submodule "festival"]
 	path = festival
 	url = https://github.com/generic-library/festival
+[submodule "speech_tools"]
+	path = speech_tools
+	url = https://github.com/generic-library/speech-tools.git
