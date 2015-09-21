@@ -15,6 +15,20 @@ def create(target):
 		"festival/src/main/festival_main.cc"
 		])
 	
+	# set the package properties :
+	my_module.pkg_set("VERSION", "0.1")
+	my_module.pkg_set("VERSION_CODE", "1")
+	my_module.pkg_set("COMPAGNY_TYPE", "org")
+	my_module.pkg_set("COMPAGNY_NAME", "NONE")
+	my_module.pkg_set("MAINTAINER", ["Mr DUPIN Edouard <yui.heero@gmail.com>"])
+	my_module.pkg_set("SECTION", ["Development", "Editors"])
+	my_module.pkg_set("PRIORITY", "optional")
+	my_module.pkg_set("DESCRIPTION", "desc")
+	my_module.pkg_set("NAME", "festival-main")
+	
+	my_module.pkg_add("RIGHT", "WRITE_EXTERNAL_STORAGE")
+	my_module.pkg_add("RIGHT", "SET_ORIENTATION")
+	
 	return my_module
 
 """

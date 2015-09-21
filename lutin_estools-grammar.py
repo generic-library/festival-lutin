@@ -9,7 +9,7 @@ def get_desc():
 def create(target):
 	my_module = module.Module(__file__, 'estools-grammar', 'LIBRARY')
 	
-	my_module.add_module_depend(['eststring'])
+	my_module.add_module_depend(['eststring', 'estools-stats'])
 	
 	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include"))
 	my_module.compile_flags('c++', "-fno-implicit-templates")
