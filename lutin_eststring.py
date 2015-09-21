@@ -7,8 +7,8 @@ def get_desc():
 	return "festival TTS engine"
 
 def create(target):
-	myModule = module.Module(__file__, 'eststring', 'LIBRARY')
-	myModule.add_src_file([
+	my_module = module.Module(__file__, 'eststring', 'LIBRARY')
+	my_module.add_src_file([
 		"speech_tools/base_class/string/EST_String.cc",
 		"speech_tools/base_class/string/EST_Regex.cc",
 		"speech_tools/base_class/string/EST_Chunk.cc",
@@ -18,10 +18,10 @@ def create(target):
 		"speech_tools/base_class/string/EST_strcasecmp.c",
 		])
 	
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include"))
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/base_class/string/"))
-	myModule.compile_flags('c++', "-fno-implicit-templates")
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/base_class/string/"))
+	my_module.compile_flags('c++', "-fno-implicit-templates")
 	
-	return myModule
+	return my_module
 
 

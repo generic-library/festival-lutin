@@ -7,8 +7,24 @@ def get_desc():
 	return "festival TTS engine"
 
 def create(target):
-	myModule = module.Module(__file__, 'festival', 'LIBRARY')
-	myModule.add_src_file([
+	my_module = module.Module(__file__, 'festival', 'LIBRARY')
+	
+	#my_module.add_module_depend(['estools', 'estbase', 'eststring'])
+	my_module.add_module_depend([
+		'estbase-audio',
+		'estbase-base_class',
+		'estbase-ling_class',
+		'estbase-rxp',
+		'estbase-utils',
+		'estools-grammar',
+		'estools-intonation',
+		'estools-sigpr',
+		'estools-siod',
+		'estools-speech_class',
+		'estools-stats'
+		])
+	
+	my_module.add_src_file([
 		'festival/src/arch/festival/festival.cc',
 		'festival/src/arch/festival/web.cc',
 		'festival/src/arch/festival/linreg.cc',
@@ -27,7 +43,7 @@ def create(target):
 		'festival/src/arch/festival/ModuleDescription.cc'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/base/parameters.cc',
 		'festival/src/modules/base/phrasify.cc',
 		'festival/src/modules/base/phrinfo.cc',
@@ -40,7 +56,7 @@ def create(target):
 		])
 	
 	# all plugins:
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/UniSyn/us_unit.cc',
 		'festival/src/modules/UniSyn/us_prosody.cc',
 		'festival/src/modules/UniSyn/ps_synthesis.cc',
@@ -49,7 +65,7 @@ def create(target):
 		'festival/src/modules/UniSyn/us_features.cc'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/Intonation/simple.cc',
 		'festival/src/modules/Intonation/duffint.cc',
 		'festival/src/modules/Intonation/int_aux.cc',
@@ -57,13 +73,13 @@ def create(target):
 		'festival/src/modules/Intonation/int_tree.cc'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/UniSyn_diphone/UniSyn_diphone.cc',
 		'festival/src/modules/UniSyn_diphone/us_diphone_index.cc',
 		'festival/src/modules/UniSyn_diphone/us_diphone_unit.cc'
 		])
 	"""
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/UniSyn_phonology/UniSyn_phonology.cc',
 		'festival/src/modules/UniSyn_phonology/unisyn_tilt.cc',
 		'festival/src/modules/UniSyn_phonology/subword.cc',
@@ -74,11 +90,17 @@ def create(target):
 		'festival/src/modules/UniSyn_phonology/UniSyn_build.cc' # pb compiling ...
 		])
 	"""
-	myModule.add_src_file([
-		'festival/src/modules/donovan/donovan.cc'
+	my_module.add_src_file([
+		'festival/src/modules/donovan/coeffs.c',
+		'festival/src/modules/donovan/donovan.cc',
+		'festival/src/modules/donovan/durations.c',
+		'festival/src/modules/donovan/excitation.c',
+		'festival/src/modules/donovan/load_diphs.c',
+		'festival/src/modules/donovan/makewav.c',
+		'festival/src/modules/donovan/pitch.c',
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/Text/text_modes.cc',
 		'festival/src/modules/Text/tok_ext.cc',
 		'festival/src/modules/Text/text.cc',
@@ -88,17 +110,17 @@ def create(target):
 		'festival/src/modules/Text/text_aux.cc'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/clustergen/HTS_vocoder_me.cc', # request include : festival/src/modules/hts_engine
 		'festival/src/modules/clustergen/mlsa_resynthesis.cc',
 		'festival/src/modules/clustergen/simple_mlpg.cc',
 		'festival/src/modules/clustergen/vc.cc',
 		'festival/src/modules/clustergen/clustergen.cc'
 		])
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/hts_engine"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/hts_engine"))
 	
 	"""
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/diphone/di_select.cc',
 		'festival/src/modules/diphone/di_pitch.cc',
 		'festival/src/modules/diphone/di_io.cc',
@@ -109,31 +131,41 @@ def create(target):
 		])
 	"""
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/Duration/duration.cc',
 		'festival/src/modules/Duration/dur_aux.cc',
 		'festival/src/modules/Duration/Klatt.cc'
 		])
 	
-	myModule.add_src_file([
-		'festival/src/modules/hts_engine/fest2hts_engine.cc'
+	my_module.add_src_file([
+		'festival/src/modules/hts_engine/fest2hts_engine.cc',
+		'festival/src/modules/hts_engine/HTS_audio.c',
+		'festival/src/modules/hts_engine/HTS_engine.c',
+		'festival/src/modules/hts_engine/HTS_engine.c',
+		'festival/src/modules/hts_engine/HTS_gstream.c',
+		'festival/src/modules/hts_engine/HTS_label.c',
+		'festival/src/modules/hts_engine/HTS_misc.c',
+		'festival/src/modules/hts_engine/HTS_model.c',
+		'festival/src/modules/hts_engine/HTS_pstream.c',
+		'festival/src/modules/hts_engine/HTS_sstream.c',
+		#'festival/src/modules/hts_engine/HTS_vocoder.c'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/clunits/cldb.cc',
 		'festival/src/modules/clunits/clunits.cc',
 		'festival/src/modules/clunits/acost.cc',
 		'festival/src/modules/clunits/cljoin.cc' # request finclude estival/src/modules/UniSyn
 		])
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/UniSyn"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/UniSyn"))
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/rxp/ttsxml.cc' # request include : speech_tools/include/rxp
 		])
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include/rxp"))
-	myModule.compile_flags('c++', "-DCHAR_SIZE=8")
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include/rxp"))
+	my_module.compile_flags('c++', "-DCHAR_SIZE=8")
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/Lexicon/complex.cc',
 		'festival/src/modules/Lexicon/lts.cc',
 		'festival/src/modules/Lexicon/lexicon.cc',
@@ -142,11 +174,11 @@ def create(target):
 		'festival/src/modules/Lexicon/lts_rules.cc'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/parser/pparser.cc'
 		])
 	
-	myModule.add_src_file([
+	my_module.add_src_file([
 		'festival/src/modules/MultiSyn/EST_JoinCost.cc',
 		'festival/src/modules/MultiSyn/DiphoneUnitVoice.cc',
 		'festival/src/modules/MultiSyn/inst_tmpl/list_itemp_t.cc',
@@ -168,29 +200,36 @@ def create(target):
 		'festival/src/modules/MultiSyn/EST_FlatTargetCost.cc',
 		'festival/src/modules/MultiSyn/TargetCostRescoring.cc'
 		])
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/MultiSyn"))
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/MultiSyn/inst_tmpl"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/MultiSyn"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules/MultiSyn/inst_tmpl"))
 	
 	# load all modules
-	myModule.add_src_file([
-		'festival/src/modules/init_modules.cc'
+	my_module.add_src_file([
+		'init_modules.cc'
 		])
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/modules"))
 	
-	myModule.compile_flags('c++', "-fno-implicit-templates")
-	myModule.compile_flags('c++', "-DINSTANTIATE_TEMPLATES")
-	myModule.compile_flags('c++', "-DFTNAME='Festival Speech Synthesis System'")
-	myModule.compile_flags('c++', "-DFTLIBDIRC='" + tools.get_current_path(__file__) + "/festival/lib '")
-	myModule.compile_flags('c++', "-DFTVERSION='2.4'")
-	myModule.compile_flags('c++', "-DFTSTATE='release'")
-	myModule.compile_flags('c++', "-DFTDATE='December 2014'")
-	myModule.compile_flags('c++', "-DFTSTATE='release'")
-	myModule.compile_flags('c++', '-DFTOSTYPE=\\"unknown_DebianGNULinux\\"')
-	myModule.compile_version_CC(1999)
+	my_module.compile_flags('c++', "-fno-implicit-templates")
+	my_module.compile_flags('c++', "-DINSTANTIATE_TEMPLATES")
+	my_module.compile_flags('c++', "-DFTNAME='Festival Speech Synthesis System'")
+	my_module.compile_flags('c++', "-DFTLIBDIRC='" + tools.get_current_path(__file__) + "/festival/lib '")
+	my_module.compile_flags('c++', "-DFTVERSION='2.4'")
+	my_module.compile_flags('c++', "-DFTSTATE='release'")
+	my_module.compile_flags('c++', "-DFTDATE='December 2014'")
+	my_module.compile_flags('c++', "-DFTSTATE='release'")
+	my_module.compile_flags('c++', '-DFTOSTYPE=\\"unknown_DebianGNULinux\\"')
+	my_module.compile_version_CC(1999)
 	# TODO: copy in install folder ...
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/include"))
-	myModule.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include"))
-	#myModule.add_export_path(tools.get_current_path(__file__) + "/festival/src/include")
-	return myModule
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "festival/src/include"))
+	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include"))
+	#my_module.add_export_path(tools.get_current_path(__file__) + "/festival/src/include")
+	
+	my_module.compile_version_XX(2003)
+	my_module.add_export_flag('link', "-lncurses")
+	my_module.add_export_flag('link', "-lasound")
+	my_module.add_export_flag('link', "-ldl")
+	my_module.add_export_flag('link', "-lm")
+	my_module.add_export_flag('link', "-lstdc++")
+	return my_module
 
 

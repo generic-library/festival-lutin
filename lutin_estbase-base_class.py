@@ -7,65 +7,12 @@ def get_desc():
 	return "festival TTS engine"
 
 def create(target):
-	my_module = module.Module(__file__, 'estbase', 'LIBRARY')
-	"""
-	my_module.add_module_depend(['estools'])
+	my_module = module.Module(__file__, 'estbase-base_class', 'LIBRARY')
 	
-	my_module.add_src_file([
-		"speech_tools/rxp/charset.c",
-		"speech_tools/rxp/ctype16.c",
-		"speech_tools/rxp/dtd.c",
-		"speech_tools/rxp/string16.c",
-		"speech_tools/rxp/url.c",
-		"speech_tools/rxp/ctype16.c",
-		"speech_tools/rxp/input.c",
-		"speech_tools/rxp/stdio16.c",
-		"speech_tools/rxp/system.c",
-		"speech_tools/rxp/xmlparser.c",
-		"speech_tools/rxp/XML_Parser.cc"
-		])
+	my_module.add_module_depend(['eststring'])
 	
 	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include"))
-	my_module.add_export_path(os.path.join(tools.get_current_path(__file__), "speech_tools/include/rxp"))
-	my_module.compile_flags('c', "-DCHAR_SIZE=8")
-	
-	
-	my_module.add_src_file([
-		"speech_tools/audio/gen_audio.cc",
-		"speech_tools/audio/nas.cc",
-		"speech_tools/audio/esd.cc",
-		"speech_tools/audio/sun16audio.cc",
-		"speech_tools/audio/mplayer.cc",
-		"speech_tools/audio/win32audio.cc",
-		"speech_tools/audio/irixaudio.cc",
-		"speech_tools/audio/os2audio.cc",
-		"speech_tools/audio/macosxaudio.cc",
-		"speech_tools/audio/linux_sound.cc"
-		])
 	my_module.compile_flags('c++', "-fno-implicit-templates")
-	my_module.compile_flags('c++', "-DSUPPORT_ALSALINUX")
-	
-	my_module.add_src_file([
-		"speech_tools/utils/cmd_line.cc",
-		"speech_tools/utils/util_io.cc",
-		"speech_tools/utils/filetrans.cc",
-		"speech_tools/utils/cmd_line_aux.cc",
-		"speech_tools/utils/EST_swapping.cc",
-		"speech_tools/utils/est_file.cc",
-		"speech_tools/utils/EST_cutils.c",
-		"speech_tools/utils/EST_error.c",
-		"speech_tools/utils/walloc.c",
-		"speech_tools/utils/system_specific_unix.c"
-		])
-	my_module.compile_flags('c++', "-DINSTANTIATE_TEMPLATES")
-	my_module.compile_flags('c++', "-DFTNAME='Festival Speech Tools Library'")
-	my_module.compile_flags('c++', "-DFTLIBDIRC='" + tools.get_current_path(__file__) + "/festival/lib '")
-	my_module.compile_flags('c++', "-DFTVERSION='2.4'")
-	my_module.compile_flags('c++', "-DFTSTATE='release'")
-	my_module.compile_flags('c++', "-DFTDATE='December 2014'")
-	my_module.compile_flags('c++', "-DFTSTATE='release'")
-	my_module.compile_flags('c++', '-DFTOSTYPE=\\"unknown_DebianGNULinux\\"')
-	
 	my_module.add_src_file([
 		"speech_tools/base_class/EST_UList.cc",
 		"speech_tools/base_class/EST_Option.cc",
@@ -147,34 +94,7 @@ def create(target):
 		"speech_tools/base_class/inst_tmpl/deq_i_t.cc"
 		])
 	
-	my_module.add_src_file([
-		"speech_tools/ling_class/EST_Item.cc",
-		"speech_tools/ling_class/EST_Item_Content.cc",
-		"speech_tools/ling_class/item_aux.cc",
-		"speech_tools/ling_class/EST_relation_aux.cc",
-		"speech_tools/ling_class/EST_relation_track.cc",
-		"speech_tools/ling_class/relation_io.cc",
-		"speech_tools/ling_class/EST_relation_compare.cc",
-		"speech_tools/ling_class/standard_feature_functions.cc",
-		"speech_tools/ling_class/EST_Relation_mls.cc",
-		"speech_tools/ling_class/EST_item_aux.cc",
-		"speech_tools/ling_class/EST_item_content_aux.cc",
-		"speech_tools/ling_class/EST_Relation.cc",
-		"speech_tools/ling_class/EST_UtteranceFile.cc",
-		"speech_tools/ling_class/genxml.cc",
-		"speech_tools/ling_class/EST_utterance_aux.cc",
-		"speech_tools/ling_class/ling_class_init.cc",
-		"speech_tools/ling_class/ling_t.cc",
-		"speech_tools/ling_class/EST_Utterance.cc",
-		"speech_tools/ling_class/item_feats.cc",
-		"speech_tools/ling_class/apml.cc",
-		"speech_tools/ling_class/solexml.cc",
-		"speech_tools/ling_class/EST_FeatureFunctionPackage.cc",
-		"speech_tools/ling_class/EST_FeatureFunctionContext.cc"
-		])
+	my_module.compile_flags('c++', "-DINSTANTIATE_TEMPLATES")
 	
-	my_module.compile_flags('c++', "-DINCLUDE_XML_FORMATS")
-	my_module.compile_flags('c++', '-DESTLIBDIR=\\"~/festival_data\\"')
-	"""
 	return my_module
 
